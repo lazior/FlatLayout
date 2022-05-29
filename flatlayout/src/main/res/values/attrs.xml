@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FlatLayout">
+        <attr name="flat_backgroundColor" format="color" />
+        <attr name="flat_cornerRadius" format="dimension" />
+        <attr name="flat_cornerRadiusBottomLeft" format="dimension" />
+        <attr name="flat_cornerRadiusBottomRight" format="dimension" />
+        <attr name="flat_cornerRadiusTopLeft" format="dimension" />
+        <attr name="flat_cornerRadiusTopRight" format="dimension" />
+        <attr name="flat_padding" format="dimension" />
+        <attr name="flat_paddingBottom" format="dimension" />
+        <attr name="flat_paddingEnd" format="dimension" />
+        <attr name="flat_paddingStart" format="dimension" />
+        <attr name="flat_paddingTop" format="dimension" />
+        <attr name="flat_strokeColor" format="color" />
+        <attr name="flat_strokeWidth" format="dimension" />
+    </declare-styleable>
+
+</resources>
