@@ -7,6 +7,7 @@
         <attr name="flat_cornerRadiusBottomRight" format="dimension" />
         <attr name="flat_cornerRadiusTopLeft" format="dimension" />
         <attr name="flat_cornerRadiusTopRight" format="dimension" />
+        <attr name="flat_correctPadding" format="boolean"/>
         <attr name="flat_padding" format="dimension" />
         <attr name="flat_paddingBottom" format="dimension" />
         <attr name="flat_paddingEnd" format="dimension" />

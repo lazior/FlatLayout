@@ -14,6 +14,7 @@ public class FlatLayout extends ConstraintLayout {
     //attributes
     private int BACKGROUND_COLOR;
     private final int[] CORNER_RADIUS_EACH = new int[4];
+    private boolean CORRECT_PADDING;
     private int PADDING_BOTTOM;
     private int PADDING_END;
     private int PADDING_START;
@@ -48,17 +49,19 @@ public class FlatLayout extends ConstraintLayout {
         // get attributes
         getAttrs(context, attrs);
 
-        // set padding
-        int correctPadding = STROKE_WIDTH;
-        if (maxCornerRadius > STROKE_WIDTH) {
-            correctPadding = maxCornerRadius;
+        if (CORRECT_PADDING) {
+            // set padding
+            int correctPadding = STROKE_WIDTH;
+            if (maxCornerRadius > STROKE_WIDTH) {
+                correctPadding = maxCornerRadius;
+            }
+            this.setPadding(
+                    PADDING_START + correctPadding,
+                    PADDING_TOP + correctPadding,
+                    PADDING_END + correctPadding,
+                    PADDING_BOTTOM + correctPadding
+            );
         }
-        this.setPadding(
-                PADDING_START + correctPadding,
-                PADDING_TOP + correctPadding,
-                PADDING_END + correctPadding,
-                PADDING_BOTTOM + correctPadding
-        );
 
         // set background
         background = createBackground();
@@ -69,6 +72,7 @@ public class FlatLayout extends ConstraintLayout {
         int defaultCornerRadius = maxCornerRadius = (int) context.getResources().getDimension(R.dimen.default_corner_radius);
         int defaultPadding = (int) context.getResources().getDimension(R.dimen.default_padding);
         int defaultStrokeWidth = (int) context.getResources().getDimension(R.dimen.default_stroke_width);
+        boolean defaultCorrectPadding = false;
         if (attrs != null) {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.FlatLayout);
 
@@ -79,6 +83,7 @@ public class FlatLayout extends ConstraintLayout {
             CORNER_RADIUS_EACH[1] = typedArray.getDimensionPixelSize(R.styleable.FlatLayout_flat_cornerRadiusTopRight, cornerRadius);
             CORNER_RADIUS_EACH[2] = typedArray.getDimensionPixelSize(R.styleable.FlatLayout_flat_cornerRadiusBottomRight, cornerRadius);
             CORNER_RADIUS_EACH[3] = typedArray.getDimensionPixelSize(R.styleable.FlatLayout_flat_cornerRadiusBottomLeft, cornerRadius);
+            CORRECT_PADDING = typedArray.getBoolean(R.styleable.FlatLayout_flat_correctPadding, defaultCorrectPadding);
             int padding = typedArray.getDimensionPixelSize(R.styleable.FlatLayout_flat_padding, defaultPadding);
             PADDING_BOTTOM = typedArray.getDimensionPixelSize(R.styleable.FlatLayout_flat_paddingBottom, padding);
             PADDING_END = typedArray.getDimensionPixelSize(R.styleable.FlatLayout_flat_paddingEnd, padding);
@@ -101,6 +106,7 @@ public class FlatLayout extends ConstraintLayout {
             for (int i = 0;i < 4;i++) {
                 CORNER_RADIUS_EACH[i] = defaultCornerRadius;
             }
+            CORRECT_PADDING = defaultCorrectPadding;
             PADDING_BOTTOM = defaultPadding;
             PADDING_END = defaultPadding;
             PADDING_START = defaultPadding;
